@@ -73,7 +73,9 @@ public class Game extends JPanel implements KeyListener, ActionListener {
                 direction = Direction.RIGHT;
                 break;
             case KeyEvent.VK_SPACE:
-            	running = true;
+                if (score == 0) {
+            	    running = true;
+                }
             	break;
         }
     }
