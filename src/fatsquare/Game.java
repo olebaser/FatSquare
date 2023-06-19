@@ -9,6 +9,7 @@ public class Game extends JPanel implements KeyListener, ActionListener {
     private static final int WIDTH = 900;
     private static final int HEIGHT = 900;
     private static int score = 0;
+    private JLabel startInstruction;
     private JLabel scoreLabel;
     private Sprite player;
     private Sprite food;
@@ -23,15 +24,21 @@ public class Game extends JPanel implements KeyListener, ActionListener {
         this.setBackground(Color.BLACK);
         this.setFocusable(true);
         this.addKeyListener(this);
+        this.setLayout(null);
         player = new Sprite(20, 430, 40, 40);
         food = new Sprite(430, 430, 40, 40);
         timer = new Timer(10, this);
         timer.start();
         direction = Direction.RIGHT;
-        scoreLabel = new JLabel("Press <Space> to start - Controls: Arrow Keys/VIM Keys");
-        scoreLabel.setBounds(10, 10, 100, 50);
+        startInstruction = new JLabel("Press <Space> to start | Controls: Arrow Keys or VIM Keys | Press <r> to try again");
+        startInstruction.setBounds(4, 875, 900, 25);
+        startInstruction.setForeground(Color.WHITE);
+        startInstruction.setFont(new Font("Calibri", Font.BOLD, 24));
+        this.add(startInstruction);
+        scoreLabel = new JLabel("Score: " + score);
+        scoreLabel.setBounds(4, 0, 900, 25);
         scoreLabel.setForeground(Color.WHITE);
-        scoreLabel.setFont(new Font("Calibri", Font.BOLD, 24));
+        scoreLabel.setFont(new Font("Calibri", Font.BOLD, 20));
         this.add(scoreLabel);
         running = false;
     }
@@ -73,9 +80,23 @@ public class Game extends JPanel implements KeyListener, ActionListener {
                 direction = Direction.RIGHT;
                 break;
             case KeyEvent.VK_SPACE:
-                if (score == 0) {
-            	    running = true;
-                }
+            	if (score == 0) {
+            		startInstruction.setText("");
+            		running = true;
+            	}
+            	break;
+            case KeyEvent.VK_R:
+            	score = 0;
+            	player.x = 20;
+            	player.y = 430;
+            	player.setVelocity(10);
+            	player.width = 40;
+            	player.height = 40;
+            	direction = Direction.RIGHT;
+            	food.x = 430;
+            	food.y = 430;
+            	scoreLabel.setText("Score: " + score);
+            	running = true;
             	break;
         }
     }
