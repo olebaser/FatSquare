@@ -136,16 +136,14 @@ public class Game extends JPanel implements KeyListener, ActionListener {
 
     public boolean gameOver() {
         if (player.x > WIDTH - player.width ||
-                player.x < 0 ||
-                player.y > HEIGHT - player.height ||
-                player.y < 0) {
+            player.x < 0 ||
+            player.y > HEIGHT - player.height ||
+            player.y < 0) {
             scoreLabel.setText("Game Over! Score: " + score);
             return true;
-        } else if (score >= 60) {
-            scoreLabel.setText("You won! Max. score: " + score);
-            return true;
+        } else {
+        	return false;
         }
-        return false;
     }
 
     // game loop
@@ -155,9 +153,9 @@ public class Game extends JPanel implements KeyListener, ActionListener {
             eat();
             spawnFood();
             repaint();
+            // check if game is over
             if (gameOver()) {
                 running = false;
-                // showing your score at the end
             }
         }
     }
@@ -168,4 +166,3 @@ public class Game extends JPanel implements KeyListener, ActionListener {
         game();
     }
 }
-
