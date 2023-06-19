@@ -7,7 +7,7 @@ public class Sprite extends Rectangle {
 
     Sprite(int x, int y, int width, int height) {
         super(x, y, width, height);
-        velocity = 6;
+        velocity = 8;
     }
 
     public void setVelocity(int velocity) {
