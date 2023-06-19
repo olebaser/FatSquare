@@ -25,15 +25,15 @@ public class Game extends JPanel implements KeyListener, ActionListener {
         this.addKeyListener(this);
         player = new Sprite(20, 430, 40, 40);
         food = new Sprite(430, 430, 40, 40);
-        timer = new Timer(12, this);
+        timer = new Timer(10, this);
         timer.start();
         direction = Direction.RIGHT;
-        scoreLabel = new JLabel("Score: " + score);
+        scoreLabel = new JLabel("Press <Space> to start - Controls: Arrow Keys/VIM Keys");
         scoreLabel.setBounds(10, 10, 100, 50);
         scoreLabel.setForeground(Color.WHITE);
         scoreLabel.setFont(new Font("Calibri", Font.BOLD, 24));
         this.add(scoreLabel);
-        running = true;
+        running = false;
     }
 
     enum Direction {
@@ -72,6 +72,9 @@ public class Game extends JPanel implements KeyListener, ActionListener {
             case KeyEvent.VK_L:
                 direction = Direction.RIGHT;
                 break;
+            case KeyEvent.VK_SPACE:
+            	running = true;
+            	break;
         }
     }
 
@@ -146,8 +149,8 @@ public class Game extends JPanel implements KeyListener, ActionListener {
         }
     }
 
-    // game loop
     public void game() {
+    	// game loop
         if (running) {
             movePlayer();
             eat();
