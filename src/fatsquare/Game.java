@@ -33,12 +33,12 @@ public class Game extends JPanel implements KeyListener, ActionListener {
         startInstruction = new JLabel("Press <Space> to start | Controls: Arrow Keys or VIM Keys | Press <r> to try again");
         startInstruction.setBounds(4, 875, 900, 25);
         startInstruction.setForeground(Color.WHITE);
-        startInstruction.setFont(new Font("Calibri", Font.BOLD, 24));
+        startInstruction.setFont(new Font("Calibri", Font.BOLD, 20));
         this.add(startInstruction);
         scoreLabel = new JLabel("Score: " + score);
         scoreLabel.setBounds(4, 0, 900, 25);
         scoreLabel.setForeground(Color.WHITE);
-        scoreLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+        scoreLabel.setFont(new Font("Calibri", Font.BOLD, 18));
         this.add(scoreLabel);
         running = false;
     }
